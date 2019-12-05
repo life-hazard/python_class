@@ -1,2 +1,4 @@
 # Project exclude paths
 /venv/
+# File created on code run, not needed
+/files/students2.txt

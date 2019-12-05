@@ -88,13 +88,32 @@ def ex3():
 # first and last name and adds the area code 301 to the phone number. Your program should write this to a new file
 # called students2.txt . Here is what the first line of the new file should look like: Walter Melon
 # melon@email.msmary.edu 301-555-3141
+def ex4():
+    with open("files/students.txt", "r") as students_file:
+        students = students_file.read().splitlines()
+
+    new_students = []
+
+    for student in students:
+        new_line = []
+        line = student.split(" ")
+        new_line.append(line[0].capitalize())
+        new_line.append(line[1].capitalize())
+        new_line.append("+48 " + line[3])
+        new_line = " ".join(new_line)
+        new_students.append(new_line + "\n")
+
+    with open("files/students2.txt", "w") as new_students_file:
+        new_students_file.writelines(new_students)
+
 
 # 5. You are given a file namelist.txt that contains a bunch of names. Some of the names are a first name and a last
 # name separated by spaces, like George Washington, while others have a middle name, like John Quincy Adams. There
 # are no names consisting of just one word or more than three words. Write a program that asks the user to enter
 # initials, like GW or JQA, and prints all the names that match those initials. Note that initials like JA should
 # match both John Adams and John Quincy Adams.
-
+def ex5():
+    pass
 # 6. You are given a file namelist.txt that contains a bunch of names. Print out all the names in the list in which
 # the vowels a, e, i, o, and u appear in order (with repeats possible). The first vowel in the name must be a and
 # after the first u, it is okay for there to be other vowels. An example is Ace Elvin Coulson.
