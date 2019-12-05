@@ -1,3 +1,5 @@
+import datetime as dt
+
 # Text Files
 
 # 1 You are given a file called class_scores.txt , where each line of the file contains a one-word username and a test
@@ -6,34 +8,35 @@
 # Write code that scans through the file, adds 5 points to each test score, and outputs the user-
 # names and new test scores to a new file, scores2.txt .
 
-def ex1():
-    with open("class_scores.txt", "r") as class_scores:
+
+def ex1_practice():
+    with open("files/class_scores.txt", "r") as class_scores:
         print("This is a file name: ", class_scores.name)
         class_scores_contents = class_scores.readlines()
         print(class_scores_contents)
         class_scores_contents.insert(1, "KColumbus 90\n")
 
-    with open("class_scores.txt", "w") as class_scores:
+    with open("files/class_scores.txt", "w") as class_scores:
         print(class_scores_contents)
         class_scores_contents_previous = "".join(class_scores_contents)
         print(class_scores_contents_previous)
         # class_scores.write(class_scores_contents_previous)
 
-    with open("class_scores.txt", "r") as class_scores:
+    with open("files/class_scores.txt", "r") as class_scores:
         for line in class_scores:
             print(line)
 
 
-def ex1_1():
+def ex1():
     new_data = []
-    with open("class_scores.txt", "r") as class_scores:
+    with open("files/class_scores.txt", "r") as class_scores:
         data = class_scores.readlines()
         for line in data:
             elements = line.split()
             print(elements)
             elements[1] = str(int(elements[1]) + 5)
             print(elements)
-            with open("class_scores2.txt", "a") as c:
+            with open("files/class_scores2.txt", "a") as c:
                 c.write(elements[0])
                 c.write(" ")
                 c.write(elements[1])
@@ -47,12 +50,12 @@ def ex1_1():
 # Write code that scans through the file and determines how many students passed all three tests.
 
 def ex2():
-    with open("grades.txt", "r") as grades:
+    with open("files/grades.txt", "r") as grades:
         data = grades.readlines()
         for line in data:
             elem = line.split()
             print(elem)
-            if (int(elem[1]) > 60 and int(elem[2]) > 60 and int(elem[3]) > 60):
+            if int(elem[1]) > 60 and int(elem[2]) > 60 and int(elem[3]) > 60:
                 print(elem[0] + " passed")
             else:
                 print(elem[0] + " didn\'t pass")
@@ -67,7 +70,17 @@ def ex2():
 # Write a program that scans through the file and prints out all users who were online for at least an hour.
 
 def ex3():
-    pass
+    with open("files/logfile.txt", "r") as logfile:
+        logs = logfile.read()
+    logs = logs.split("\n")
+    logs = [log.split(", ") for log in logs]
+    print("USERS WORKING OVER 1 HOUR".center(64, "-"))
+    for entry in logs:
+        time_format = "%H:%M"
+        time_difference = dt.datetime.strptime(entry[2], time_format) - dt.datetime.strptime(entry[1], time_format)
+        if time_difference.seconds > 60*60:
+            print(f"User: {entry[0]} >> hrs worked: {time_difference}")
+
 
 # 4. You are given a file called students.txt . A typical line in the file looks like: walter melon
 # melon@email.msmary.edu 555-3141 There is a name, an email address, and a phone number, each separated by tabs.
