@@ -122,19 +122,19 @@ def ex5():
     for name in names:
         if len(name) == 3:
             if len(query) == 3 and name[0][:1] == query[:1] and name[1][:1] == query[1:2] and name[2][:1] == query[2:]:
-                print(name)
+                print(" ".join(name))
             elif len(query) == 2 and name[0][:1] == query[:1] and name[2][:1] == query[1:]:
-                print(name)  # TODO: finish this
-
+                print(" ".join(name))
         else:
             if name[0][:1] == query[:1] and name[1][:1] == query[:-2:-1]:
-                print(name)
+                print(" ".join(name))
 
 
-ex5()
 # 6. You are given a file namelist.txt that contains a bunch of names. Print out all the names in the list in which
 # the vowels a, e, i, o, and u appear in order (with repeats possible). The first vowel in the name must be a and
 # after the first u, it is okay for there to be other vowels. An example is Ace Elvin Coulson.
+def ex6():
+    pass
 
 # 7. You are given a file called baseball.txt . A typical line of the file starts like below. Ichiro Suzuki SEA 162
 # 680 74 ...[more stats] Each entry is separated by a tab, \t . The first entry is the player’s name and the second
