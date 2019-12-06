@@ -113,7 +113,25 @@ def ex4():
 # initials, like GW or JQA, and prints all the names that match those initials. Note that initials like JA should
 # match both John Adams and John Quincy Adams.
 def ex5():
-    pass
+    with open("files/namelist.txt", "r") as names_file:
+        names = names_file.read().splitlines()
+    names = [name.split() for name in names]
+    query = input("Insert initials you're searching for: ").upper()
+    assert 2 <= len(query) <= 3, "The initials have to contain either 2 or 3 letters"
+
+    for name in names:
+        if len(name) == 3:
+            if len(query) == 3 and name[0][:1] == query[:1] and name[1][:1] == query[1:2] and name[2][:1] == query[2:]:
+                print(name)
+            elif len(query) == 2 and name[0][:1] == query[:1] and name[2][:1] == query[1:]:
+                print(name)  # TODO: finish this
+
+        else:
+            if name[0][:1] == query[:1] and name[1][:1] == query[:-2:-1]:
+                print(name)
+
+
+ex5()
 # 6. You are given a file namelist.txt that contains a bunch of names. Print out all the names in the list in which
 # the vowels a, e, i, o, and u appear in order (with repeats possible). The first vowel in the name must be a and
 # after the first u, it is okay for there to be other vowels. An example is Ace Elvin Coulson.
