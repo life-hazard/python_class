@@ -1,4 +1,5 @@
 import datetime as dt
+import re
 
 # Text Files
 
@@ -134,8 +135,15 @@ def ex5():
 # the vowels a, e, i, o, and u appear in order (with repeats possible). The first vowel in the name must be a and
 # after the first u, it is okay for there to be other vowels. An example is Ace Elvin Coulson.
 def ex6():
-    pass
+    with open("files/namelist.txt", "r") as names_file:
+        names = names_file.read().splitlines()
+    regex_vowels = re.compile(r".*[Aa].*[Ee].*[Ii].*[Oo].*[Uu]")
+    for name in names:
+        if regex_vowels.search(name) is not None:
+            print(name)
 
+
+ex6()
 # 7. You are given a file called baseball.txt . A typical line of the file starts like below. Ichiro Suzuki SEA 162
 # 680 74 ...[more stats] Each entry is separated by a tab, \t . The first entry is the player’s name and the second
 # is their team. Following that are 16 statistics. Home runs are the seventh stat and stolen bases are the eleventh.
