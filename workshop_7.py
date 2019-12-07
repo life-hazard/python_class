@@ -89,6 +89,8 @@ def ex3():
 # first and last name and adds the area code 301 to the phone number. Your program should write this to a new file
 # called students2.txt . Here is what the first line of the new file should look like: Walter Melon
 # melon@email.msmary.edu 301-555-3141
+
+# Used tabs because .txt files in Pycharm are set to put 4 spaces instead of tabs
 def ex4():
     with open("files/students.txt", "r") as students_file:
         students = students_file.read().splitlines()
@@ -143,11 +145,19 @@ def ex6():
             print(name)
 
 
-ex6()
-# 7. You are given a file called baseball.txt . A typical line of the file starts like below. Ichiro Suzuki SEA 162
-# 680 74 ...[more stats] Each entry is separated by a tab, \t . The first entry is the player’s name and the second
+# 7. You are given a file called baseball.txt . A typical line of the file starts like below.
+# Ichiro Suzuki SEA 162 680 74 ...[more stats]
+# Each entry is separated by a tab, \t . The first entry is the player’s name and the second
 # is their team. Following that are 16 statistics. Home runs are the seventh stat and stolen bases are the eleventh.
 # Print out all the players who have at least 20 home runs and at least 20 stolen bases.
+def ex7():
+    with open("files/baseball.txt", "r") as baseball_file:
+        players = baseball_file.readlines()
+    players = [player.split(" ") for player in players]
+    for player in players:
+        if int(player[9]) >= 20 and int(player[13]) >= 20:
+            print(" ".join(player))
+
 
 # 10. Wordplay – Use the file wordlist.txt for this problem. Find the following:
 # (a) All words ending in ime
@@ -178,3 +188,5 @@ ex6()
 # (y) All groups of 5 words, like pat pet pit pot put, where each word is 3 letters, all words share the same first
 #     and last letters, and the middle letter runs through all 5 vowels.
 # (z) The word that has the most i’s.
+def ex8():
+    pass
