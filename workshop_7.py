@@ -160,12 +160,6 @@ def ex7():
 
 
 # 10. Wordplay – Use the file wordlist.txt for this problem. Find the following:
-# (a) All words ending in ime
-# (b) All words whose second, third, and fourth letters are ave
-# (c) How many words contain at least one of the letters r, s, t, l, n, e
-# (d) The percentage of words that contain at least one of the letters r, s, t, l, n, e
-# (e) All words with no vowels
-# (f) All words that contain every vowel
 # (g) Whether there are more ten-letter words or seven-letter words
 # (h) The longest word in the list
 # (i) All palindromes
@@ -188,5 +182,53 @@ def ex7():
 # (y) All groups of 5 words, like pat pet pit pot put, where each word is 3 letters, all words share the same first
 #     and last letters, and the middle letter runs through all 5 vowels.
 # (z) The word that has the most i’s.
-def ex8():
-    pass
+
+
+def read_words():
+    with open("files/wordlist.txt", "r") as words_file:
+        words = words_file.read().split()
+    return words
+
+
+# (a) All words ending in ime
+def ex10a():
+    words = read_words()
+
+    for word in words:
+        if word.endswith("ime"):
+            print(word)
+
+
+# (b) All words whose second, third, and fourth letters are ave
+def ex10b():
+    words = read_words()
+    ave_regex = re.compile(r"\A\wave\w*")
+    for word in words:
+        if ave_regex.search(word) is not None:
+            print(word)
+
+
+# (c) How many words contain at least one of the letters r, s, t, l, n, e
+# (d) The percentage of words that contain at least one of the letters r, s, t, l, n, e
+def ex10cd():
+    words = read_words()
+    ave_regex = re.compile(r"\w*[rstlne]\w*")
+    counter = 0
+    for word in words:
+        if ave_regex.search(word) is not None:
+            counter += 1
+    print(f"Number of words containing [rstlne]: {counter}\n Percentage: {counter/len(words) * 100}%")
+
+
+# (e) All words with no vowels
+def ex10e():
+    words = read_words()
+    ave_regex = re.compile(r"\w*[oaeiuy]\w*")
+    for word in words:
+        if ave_regex.search(word) is None:
+            print(word)
+
+
+# (f) All words that contain every vowel
+def ex10f():
+    words = read_words()
