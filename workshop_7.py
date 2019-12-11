@@ -160,12 +160,6 @@ def ex7():
 
 
 # 10. Wordplay – Use the file wordlist.txt for this problem. Find the following:
-# (g) Whether there are more ten-letter words or seven-letter words
-# (h) The longest word in the list
-# (i) All palindromes
-# (j) All words that are words in reverse, like rat and tar.
-# (k) Same as above, but only print one word out of each pair.
-# (l) All words that contain double letters next each other like aardvark or book, excluding words that end in lly
 # (m) All words that contain a q that isn’t followed by a u
 # (n) All words that contain zu anywhere in the word
 # (o) All words that contain ab in multiple places, like habitable
@@ -190,10 +184,11 @@ def read_words():
     return words
 
 
+words = read_words()
+
+
 # (a) All words ending in ime
 def ex10a():
-    words = read_words()
-
     for word in words:
         if word.endswith("ime"):
             print(word)
@@ -201,7 +196,6 @@ def ex10a():
 
 # (b) All words whose second, third, and fourth letters are ave
 def ex10b():
-    words = read_words()
     ave_regex = re.compile(r"\A\wave\w*")
     for word in words:
         if ave_regex.search(word) is not None:
@@ -211,7 +205,6 @@ def ex10b():
 # (c) How many words contain at least one of the letters r, s, t, l, n, e
 # (d) The percentage of words that contain at least one of the letters r, s, t, l, n, e
 def ex10cd():
-    words = read_words()
     ave_regex = re.compile(r"\w*[rstlne]\w*")
     counter = 0
     for word in words:
@@ -222,7 +215,6 @@ def ex10cd():
 
 # (e) All words with no vowels
 def ex10e():
-    words = read_words()
     ave_regex = re.compile(r"\w*[oaeiuy]\w*")
     for word in words:
         if ave_regex.search(word) is None:
@@ -230,5 +222,67 @@ def ex10e():
 
 
 # (f) All words that contain every vowel
+def contains_all_vowels(string):
+    vowels = ["o", "a", "e", "i", "u", "y"]
+    for vowel in vowels:
+        if string.find(vowel) == -1:
+            return False
+
+    return True
+
+
 def ex10f():
-    words = read_words()
+    for word in words:
+        if contains_all_vowels(word):
+            print(word)
+
+
+# (g) Whether there are more ten-letter words or seven-letter words
+def ex10g():
+    count_sevens, count_tens = 0, 0
+
+    for word in words:
+        if len(word) == 7:
+            count_sevens += 1
+        elif len(word) == 10:
+            count_tens += 1
+
+    if count_sevens >= count_tens:
+        print(f"There are more seven-letter words. {count_sevens} to be exact.")
+    else:
+        print(f"There are more ten-letter words. {count_tens} to be exact.")
+
+
+# (h) The longest word in the list
+def ex10h():
+    print(f"Longest word: {max(words, key=len)}")
+
+
+# (i) All palindromes
+def ex10i():
+    for word in words:
+        if list(word) == list(reversed(word)):
+            print(word)
+
+
+# (j) All words that are words in reverse, like rat and tar.
+def ex10j():
+    for word in words:
+        reversed_word = "".join(list(reversed(word)))
+        if reversed_word in words:
+            print(word)
+
+
+# (k) Same as above, but only print one word out of each pair.
+def ex10k():
+    custom_words = words
+    for word in custom_words:
+        reversed_word = "".join(list(reversed(word)))
+        if reversed_word in custom_words:
+            print(word)
+            custom_words.remove(word)
+
+
+# (l) All words that contain double letters next each other like aardvark or book, excluding words that end in lly
+def ex10l():
+    pass
