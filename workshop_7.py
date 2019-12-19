@@ -160,8 +160,6 @@ def ex7():
 
 
 # 10. Wordplay – Use the file wordlist.txt for this problem. Find the following:
-# (m) All words that contain a q that isn’t followed by a u
-# (n) All words that contain zu anywhere in the word
 # (o) All words that contain ab in multiple places, like habitable
 # (p) All words with four or more vowels in a row
 # (q) All words that contain both a z and a w
@@ -285,4 +283,27 @@ def ex10k():
 
 # (l) All words that contain double letters next each other like aardvark or book, excluding words that end in lly
 def ex10l():
-    pass
+    for word in words:
+        word = list(word)  # TODO: figure why we need that part here. we shouldn't. and I'm sleepy.
+        for i in range(len(word) - 1):
+            if word[i] == word[i + 1]:
+                print("".join(word))
+                break
+
+
+# (m) All words that contain a q that isn’t followed by a u
+def ex10m():
+    for word in words:
+        for i in range(len(word)):
+            if word[i] == "q" and word[i + 1] != "u":
+                print(word)
+
+
+# (n) All words that contain zu anywhere in the word
+def ex10n():
+    for word in words:
+        if word.index("zu"):
+            print(word)
+
+
+ex10n()
