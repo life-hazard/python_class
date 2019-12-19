@@ -160,20 +160,6 @@ def ex7():
 
 
 # 10. Wordplay – Use the file wordlist.txt for this problem. Find the following:
-# (o) All words that contain ab in multiple places, like habitable
-# (p) All words with four or more vowels in a row
-# (q) All words that contain both a z and a w
-# (r) All words whose first letter is a, third letter is e and fifth letter is i
-# (s) All two-letter words
-# (t) All four-letter words that start and end with the same letter
-# (u) All words that contain at least nine vowels.
-# (v) All words that contain each of the letters a, b, c, d, e, and f in any order. There may be other letters in the
-#     word. Two examples are backfield and feedback.
-# (w) All words whose first four and last four letters are the same
-# (x) All words of the form abcd*dcba, where * is arbitrarily long sequence of letters.
-# (y) All groups of 5 words, like pat pet pit pot put, where each word is 3 letters, all words share the same first
-#     and last letters, and the middle letter runs through all 5 vowels.
-# (z) The word that has the most i’s.
 
 
 def read_words():
@@ -284,10 +270,9 @@ def ex10k():
 # (l) All words that contain double letters next each other like aardvark or book, excluding words that end in lly
 def ex10l():
     for word in words:
-        word = list(word)  # TODO: figure why we need that part here. we shouldn't. and I'm sleepy.
         for i in range(len(word) - 1):
             if word[i] == word[i + 1]:
-                print("".join(word))
+                print(word)
                 break
 
 
@@ -302,8 +287,99 @@ def ex10m():
 # (n) All words that contain zu anywhere in the word
 def ex10n():
     for word in words:
-        if word.index("zu"):
+        if word.find("zu") != -1:
             print(word)
 
 
-ex10n()
+# (o) All words that contain ab in multiple places, like habitable
+def ex10o():
+    for word in words:
+        first_occurence = word.find("ab")
+        if first_occurence != -1:
+            if word[first_occurence + 2:].find("ab") != -1:
+                print(word)
+
+
+# (p) All words with four or more vowels in a row
+def ex10p():
+    regex_vowels = re.compile(r"[oaeiuyOAEIUY]{4,}")
+    for word in words:
+        if regex_vowels.search(word) is not None:
+            print(word)
+
+
+# (q) All words that contain both a z and a w
+def ex10q():
+    for word in words:
+        if word.find("z") != -1 and word.find("w") != -1:
+            print(word)
+
+
+# (r) All words whose first letter is a, third letter is e and fifth letter is i
+def ex10r():
+    for word in words:
+        if word.find("a") == 0 and word.find("e") == 2 and word.find("i") == 4:
+            print(word)
+
+
+# (s) All two-letter words
+def ex10s():
+    for word in words:
+        if len(word) == 2:
+            print(word)
+
+
+# (t) All four-letter words that start and end with the same letter
+def ex10t():
+    for word in words:
+        if word.endswith(word[0]):
+            print(word)
+
+
+# (u) All words that contain at least nine vowels.
+def ex10u():
+    regex_vowels = re.compile(r"[oaeiuyOAEIUY]")
+    for word in words:
+        if len(regex_vowels.findall(word)) >= 9:
+            print(word)
+
+
+# (v) All words that contain each of the letters a, b, c, d, e, and f in any order. There may be other letters in the
+# word. Two examples are backfield and feedback.
+def ex10v():
+    for word in words:
+        if word.find("a") != -1 and word.find("b") != -1 and word.find("c") != -1 and word.find(
+                "d") != -1 and word.find("f") != -1:
+            print(word)
+
+
+# (w) All words whose first four and last four letters are the same
+def ex10w():
+    for word in words:
+        if word.endswith(word[:4]):
+            print(word)
+
+
+# (x) All words of the form abcd*dcba, where * is arbitrarily long sequence of letters.
+def ex10x():
+    abcd_regex = re.compile(r"abcd.*dcba")
+    for word in words:
+        if abcd_regex.search(word) is not None:
+            print(word)
+
+
+# (y) All groups of 5 words, like pat pet pit pot put, where each word is 3 letters, all words share the same first
+# and last letters, and the middle letter runs through all 5 vowels.
+def ex10y():
+    words_list = " ".join(words)
+    rhyme_regex = re.compile(f"\wa\w \we\w \wi\w \wo\w \wu\w")
+    print(rhyme_regex.findall(words_list))
+
+
+# (z) The word that has the most i’s.
+def ex10z():
+    best = ""
+    for word in words:
+        if word.count("i") > best.count("i"):
+            best = word
+    print(best)
