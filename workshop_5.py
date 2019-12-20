@@ -326,15 +326,23 @@ def basic_exercises_sets():
 
 # 11. Write a Python program to create a shallow copy of sets.
     print('\nCreating shallow copy of set')
-    
-# 12. Write a Python program to clear a set.
+    copy_set_0 = set_0.copy()
+    print(set_0)
+    print(copy_set_0)
 
-basic_exercises_sets()
+# 12. Write a Python program to clear a set.
+    print('\nClearing a set')
+    copy_set_0.clear()
+    print(copy_set_0)
+
 
 # EXERCISES
 # 1. Given a list of integers. Determine how many distinct numbers there are. This task can be solved in one line of
 # code.
-distinct_int = lambda integers: sum([1 for integer in integers if integers.count(integer) == 1])
+def eex1():
+    distinct_int = lambda integers: sum([1 for integer in integers if integers.count(integer) == 1])
+    
+eex1()
 
 # print(distinct_int([12, 15, 15, 6, 7, 9, 9, 9, 4, 15]))  # Example
 # 2. Given two lists of numbers. Count how many unique numbers occur in both of them. This task can be solved in one
