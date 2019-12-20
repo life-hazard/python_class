@@ -1,3 +1,7 @@
+import numpy as np
+import random
+
+
 def ex1():
     list = {}
     while (True):
@@ -172,9 +176,6 @@ def ex6():
 # 7. Create a 5 × 5 list of numbers. Then write a program that creates a dictionary whose keys are the numbers
 # and whose values are the how many times the number occurs. Then print the three most common numbers.
 
-import numpy as np
-import random
-
 
 def repeating_in_matrix():
     x = 5
@@ -183,7 +184,7 @@ def repeating_in_matrix():
     print(matrix)
 
 
-repeating_in_matrix()
+# repeating_in_matrix() TODO: I think you should finish this or something.
 
 # 8. Using the card dictionary from earlier in this chapter, create a simple card game that deals two players three
 # cards each. The player with the highest card wins. If there is a tie, then compare the second highest card and,
@@ -211,8 +212,13 @@ repeating_in_matrix()
 # EXERCISES
 # 1. Given a list of integers. Determine how many distinct numbers there are. This task can be solved in one line of
 # code.
+distinct_int = lambda integers: sum([1 for integer in integers if integers.count(integer) == 1])
+
+# print(distinct_int([12, 15, 15, 6, 7, 9, 9, 9, 4, 15]))  # Example
+
 # 2. Given two lists of numbers. Count how many unique numbers occur in both of them. This task can be solved in one
 # line of code.
+
 # 3. Given two lists of numbers. Find all the numbers that occur in both the first and the second list and print them
 # in ascending order. Even this task can be solved in one line of code.
 # 4. Given a sequence of numbers, determine if the next number has already been encountered. For each number, print
