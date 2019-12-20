@@ -1,5 +1,6 @@
 import numpy as np
 
+
 def ex1():
     list = {}
     while (True):
@@ -184,6 +185,7 @@ def ex6():
             print(team_scores)
             break
 
+
 # 7. Create a 5 × 5 list of numbers. Then write a program that creates a dictionary whose keys are the numbers
 # and whose values are the how many times the number occurs. Then print the three most common numbers.
 
@@ -206,31 +208,128 @@ def ex7():
         print(max_key)
         repeats.pop(max_key)
 
+
 # 8. Using the card dictionary from earlier in this chapter, create a simple card game that deals two players three
 # cards each. The player with the highest card wins. If there is a tie, then compare the second highest card and,
 # if necessary, the third highest. If all three cards have the same value, then the game is a draw.
+import random
 
 
-# 9. Using the card dictionary from earlier in the chapter, deal out three cards. Determine the following:
-# (a) If the three cards form a flush (all of the same suit)
-# (b) If there is a three-of-a-kind (all of the same value)
-# (c) If there is a pair, but not three-of-a-kind
-# (d) If the three cards form a straight (all in a row, like (2, 3, 4) or (10, Jack, Queen))
+def ex8():
+    deck_0 = {'king': 13, 'queen': 12, 'jack': 11, 'ten': 10, 'nine': 9, 'eight': 8, 'seven': 7, 'six': 6, 'five': 5,
+              'four': 4, 'three': 3, 'two': 2, 'ace': 1}
+    deck = {13: 'king', 12: 'queen', 11: 'jack', 10: 'ten', 9: 'nine', 8: 'eight', 7: 'seven', 6: 'six', 5: 'five',
+            4: 'four', 3: 'three', 2: 'two', 1: 'ace'}
+
+    player_1 = {}
+    player_2 = {}
+
+    print('DEALING CARDS')
+    for i in range(3):
+        card_dealt_1 = random.randint(1, 13)
+        card_dealt_2 = random.randint(1, 13)
+        player_1[deck[card_dealt_1]] = card_dealt_1
+        player_2[deck[card_dealt_2]] = card_dealt_2
+        print('Player 1:\t', deck[card_dealt_1], '\t', 'Player 2:\t', deck[card_dealt_2])
+
+    pl_1 = sorted(list(player_1.values()), reverse=True)
+    pl_2 = sorted(list(player_2.values()), reverse=True)
+
+    if pl_1[0] > pl_2[0]:
+        print('Player 1 wins!')
+    if pl_1[0] < pl_2[0]:
+        print('Player 2 wins!')
+    if pl_1[0] == pl_2[0]:
+        if pl_1[1] > pl_2[1]:
+            print('Player 1 wins!')
+        if pl_1[1] < pl_2[1]:
+            print('Player 2 wins!')
+        if pl_1[1] == pl_2[1]:
+            print('Player 1 wins!')
+            if pl_1[2] > pl_2[2]:
+                print('Player 1 wins!')
+            if pl_1[2] < pl_2[2]:
+                print('Player 2 wins!')
+            if pl_1[2] == pl_2[2]:
+                print('It\'s a draw!')
 
 
 # BASIC EXERCISES
+
+def basic_exercises_sets():
+    '''
+    set = {}
+    print('Enter elements of set, to stop press [x]')
+    while True:
+        element = input()
+        set = element
+
+        if input() == 'x':
+            break
+    print(set)
+    '''
+
 # 1.  Write a Python program to create a set
+    print('Created set')
+    set_0 = {'One', 'Two', 33, 77, 1, 'Banana'}
+    print(set_0)
+
 # 2.  Write a Python program to iteration over sets.
+    print('\nIterating over set')
+    for i in set_0:
+        print(i)
+
 # 3.  Write a Python program to add member(s) in a set
+    print('\nAdding to a set')
+    set_0.add('added')
+    print(set_0)
+
 # 4.  Write a Python program to remove item(s) from set
+    print('\nRemoving from set')
+    set_0.remove(77)
+    print(set_0)
+
 # 5.  Write a Python program to remove an item from a set if it is present in the set.
+    print('\nRemoving from set if present')
+    to_remove = 1
+    if to_remove in set_0:
+        set_0.remove(to_remove)
+    print(set_0)
+
 # 6.  Write a Python program to create an intersection of sets.
+    print('\nCreating intersection of sets')
+    set_1 = {'Cherry', 'Apple', 'Banana'}
+    inter_set = set_0.intersection(set_1)
+    print(inter_set)
+
 # 7.  Write a Python program to create a union of sets.
+    print('\nCreating union of sets')
+    union_set = set_0.union(set_1)
+    print(union_set)
+
 # 8.  Write a Python program to create set difference.
+    print('\nCreating set difference')
+    dif_set = set_0.difference(set_1)
+    print(dif_set)
+
 # 9.  Write a Python program to create a symmetric difference.
+    print('\nCreating symmetric difference')
+    sym_set = set_0.symmetric_difference(set_1)
+    print(sym_set)
+
 # 10. Write a Python program to issubset and issuperset.
+    print('\nIssubset and issuperset')
+    issubset_set = set_0.issubset(set_1)
+    issuperset_set = set_0.issuperset(set_1)
+    print(issubset_set)
+    print(issuperset_set)
+
 # 11. Write a Python program to create a shallow copy of sets.
+    print('\nCreating shallow copy of set')
+    
 # 12. Write a Python program to clear a set.
+
+basic_exercises_sets()
 
 # EXERCISES
 # 1. Given a list of integers. Determine how many distinct numbers there are. This task can be solved in one line of
@@ -314,4 +413,3 @@ distinct_int = lambda integers: sum([1 for integer in integers if integers.count
 # (b) Modify the function above so that there is an optional argument called start that allows the list to start at
 # a value other than 2. The function should return the first n primes that are greater than or equal to start.
 # The default value of start should be 2.
-
