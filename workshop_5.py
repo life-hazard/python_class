@@ -1,6 +1,4 @@
 import numpy as np
-import random
-
 
 def ex1():
     list = {}
@@ -151,60 +149,85 @@ def ex6():
             score_line = score_line.split()
             team_1 = score_line[0]
             team_2 = score_line[2]
-            score_1 = score_line[1]
-            score_2 = score_line[3]
-            if team_1 or team_2 in team_scores:
-                # if score_1 > score_2:
+            score_1 = int(score_line[1])
+            score_2 = int(score_line[3])
+
+            if team_1 in team_scores:
                 if score_1 > score_2:
-                    # if team_1 or team_2 in team_scores:
                     team_scores[team_1][0] += 1
+                else:
+                    team_scores[team_1][1] += 1
+
+            if team_2 in team_scores:
+                if score_1 > score_2:
                     team_scores[team_2][1] += 1
-                    # team_scores[team_1] = wins1, loses1
-                    # team_scores[team_2] = wins2, loses2
-                    print(team_scores)
                 else:
                     team_scores[team_2][0] += 1
-                    team_scores[team_1][1] += 1
-                    # team_scores[team_2] = wins2, loses2
-                    # team_scores[team_1] = wins1, loses1
-                    print(team_scores)
-        if answer == "n":
-            break
-    print(team_scores)
 
+            if team_1 not in team_scores:
+                if score_1 > score_2:
+                    if team_1 not in team_scores:
+                        team_scores[team_1] = [1, 0]
+                else:
+                    if team_1 not in team_scores:
+                        team_scores[team_1] = [0, 1]
+
+            if team_2 not in team_scores:
+                if score_1 > score_2:
+                    if team_2 not in team_scores:
+                        team_scores[team_2] = [0, 1]
+                else:
+                    if team_2 not in team_scores:
+                        team_scores[team_2] = [1, 0]
+
+        if answer == "n":
+            print(team_scores)
+            break
 
 # 7. Create a 5 × 5 list of numbers. Then write a program that creates a dictionary whose keys are the numbers
 # and whose values are the how many times the number occurs. Then print the three most common numbers.
 
 
-def repeating_in_matrix():
+def ex7():
     x = 5
     y = 5
     matrix = np.random.randint(10, size=(5, 5))
     print(matrix)
+    repeats = {}
 
+    for number in matrix.flat:
+        if number in repeats:
+            repeats[number] += 1
+        else:
+            repeats[number] = 1
 
-# repeating_in_matrix() TODO: I think you should finish this or something.
+    for i in range(3):
+        max_key = max(repeats, key=lambda key: repeats[key])
+        print(max_key)
+        repeats.pop(max_key)
 
 # 8. Using the card dictionary from earlier in this chapter, create a simple card game that deals two players three
 # cards each. The player with the highest card wins. If there is a tie, then compare the second highest card and,
 # if necessary, the third highest. If all three cards have the same value, then the game is a draw.
+
+
 # 9. Using the card dictionary from earlier in the chapter, deal out three cards. Determine the following:
 # (a) If the three cards form a flush (all of the same suit)
 # (b) If there is a three-of-a-kind (all of the same value)
 # (c) If there is a pair, but not three-of-a-kind
 # (d) If the three cards form a straight (all in a row, like (2, 3, 4) or (10, Jack, Queen))
 
+
 # BASIC EXERCISES
-# 1. Write a Python program to create a set
-# 2. Write a Python program to iteration over sets.
-# 3. Write a Python program to add member(s) in a set
-# 4. Write a Python program to remove item(s) from set
-# 5. Write a Python program to remove an item from a set if it is present in the set.
-# 6. Write a Python program to create an intersection of sets.
-# 7. Write a Python program to create a union of sets.
-# 8. Write a Python program to create set difference.
-# 9. Write a Python program to create a symmetric difference.
+# 1.  Write a Python program to create a set
+# 2.  Write a Python program to iteration over sets.
+# 3.  Write a Python program to add member(s) in a set
+# 4.  Write a Python program to remove item(s) from set
+# 5.  Write a Python program to remove an item from a set if it is present in the set.
+# 6.  Write a Python program to create an intersection of sets.
+# 7.  Write a Python program to create a union of sets.
+# 8.  Write a Python program to create set difference.
+# 9.  Write a Python program to create a symmetric difference.
 # 10. Write a Python program to issubset and issuperset.
 # 11. Write a Python program to create a shallow copy of sets.
 # 12. Write a Python program to clear a set.
@@ -215,10 +238,8 @@ def repeating_in_matrix():
 distinct_int = lambda integers: sum([1 for integer in integers if integers.count(integer) == 1])
 
 # print(distinct_int([12, 15, 15, 6, 7, 9, 9, 9, 4, 15]))  # Example
-
 # 2. Given two lists of numbers. Count how many unique numbers occur in both of them. This task can be solved in one
 # line of code.
-
 # 3. Given two lists of numbers. Find all the numbers that occur in both the first and the second list and print them
 # in ascending order. Even this task can be solved in one line of code.
 # 4. Given a sequence of numbers, determine if the next number has already been encountered. For each number, print
@@ -234,19 +255,20 @@ distinct_int = lambda integers: sum([1 for integer in integers if integers.count
 # only in Bob's set. For each set, print the number of elements in the set, followed by the numerical color elements,
 # sorted in ascending order.
 # 6. Given a number n, followed by n lines of text, print the number of distinct words that appear in the text.
-# For this, we define a word to be a sequence of non-whitespace characters, seperated by one or more whitespace or
+# For this, we define a word to be a sequence of non-whitespace characters, separated by one or more whitespace or
 # newline characters. Punctuation marks are part of a word, in this definition.
 # 7. Augustus and Beatrice play the following game. Augustus thinks of a secret integer number from 1 to n. Beatrice
 # tries to guess the number by providing a set of integers. Augustus answers YES if his secret number exists in the
 # provided set, or NO, if his number does not exist in the provided numbers. Then after a few questions Beatrice,
 # totally confused, asks you to help her determine Augustus's secret number. Given the value of n in the first line,
-# followed by the a sequence Beatrice's guesses, series of numbers seperated by spaces and Agustus's responses, or
+# followed by the a sequence Beatrice's guesses, series of numbers separated by spaces and Agustus's responses, or
 # Beatrice's plea for HELP. When Beatrice calls for help, provide a list of all the remaining possible secret numbers,
 # in ascending order, separated by a space.
 
 
-# EXERCISES 1. Write a function called rectangle that takes two integers m and n as arguments and prints out an
-# m × n box consisting of asterisks. Shown below is the output of rectangle(2,4)
+# EXERCISES
+# 1. Write a function called rectangle that takes two integers m and n as arguments and prints out an m × n box
+# consisting of asterisks. Shown below is the output of rectangle(2,4)
 # 2.
 # (a) Write a function called add_excitement that takes a list of strings and adds an exclamation point ( ! ) to the
 # end of each string in the list. The program should modify the  original list and not return anything.
@@ -292,3 +314,4 @@ distinct_int = lambda integers: sum([1 for integer in integers if integers.count
 # (b) Modify the function above so that there is an optional argument called start that allows the list to start at
 # a value other than 2. The function should return the first n primes that are greater than or equal to start.
 # The default value of start should be 2.
+
