@@ -7,10 +7,11 @@
 # (f) Remove the first and last items from the list, sort the remaining items
 # (g) Print how many integers in the list are less than 5.
 
+
 def list_of_integers():
     int_list = []
     print("Enter integers separated by enter, to stop leave blank.")
-    while (True):
+    while True:
         # print("Enter integers separated by enter, to stop press q.")
         new_elem = input()
         if new_elem == '':
@@ -63,7 +64,7 @@ def list_of_integers():
 def changing_tens():
     print("Enter numbers between 1 and 12. To finish enter nothing")
     elements = []
-    while (True):
+    while True:
         new_elem = input()
         if new_elem == '':
             break
@@ -76,7 +77,10 @@ def changing_tens():
     print(elements)
 
 
-# 10. Write a program that rotates the elements of a list so that the element at the first index moves to the second index, the element in the second index moves to the third index, etc., and the element in the last index moves to the first index.
+# 10. Write a program that rotates the elements of a list so that the element at the first index moves to the second
+# index, the element in the second index moves to the third index, etc., and the element in the last index moves to
+# the first index.
+
 
 import random
 
@@ -127,7 +131,7 @@ def twelve():
 def remove_repeated():
     print("Enter elements. To finish enter nothing")
     new_list = []
-    while (True):
+    while True:
         new_elem = input()
         if new_elem == '':
             break
@@ -164,7 +168,7 @@ def feet_conversion():
 # Each character gets its own shift, so there needs to be as many random shifts as there are characters in the message.
 # As an example, suppose the user enters secret. The program should generate a random shift between 1 and 26
 # for each character. Suppose the randomly generated shifts are 1, 3, 2, 10, 8, and 2.
-# The encrypted message wouldbe thebmv.
+# The encrypted message would be thebmv.
 # (a) Write a program that asks the user for a message and encrypts the message using the one-time pad.
 # First convert the string to lowercase. Any spaces and punctuation in the string should be left unchanged.
 # For example, Secret!!! becomes thebmv!!! using the shifts above.

@@ -3,7 +3,7 @@ import numpy as np
 
 def ex1():
     list = {}
-    while (True):
+    while True:
         print('Adding products, to add press enter, to finish press 0.')
         if input() != '0':
             product_name = input('Enter product name: ')
@@ -93,7 +93,8 @@ def ex4():
 # 5. Repeatedly ask the user to enter a team name and the how many games the team won and how many they lost.
 # Store this information in a dictionary where the keys are the team names and the values are lists of the form
 # [ wins , losses ] .
-# (a) Using the dictionary created above, allow the user to enter a team name and print out the team’s winning percentage.
+# (a) Using the dictionary created above, allow the user to enter a team name and print out the team’s winning
+#     percentage.
 # (b) Using the dictionary, create a list whose entries are the number of wins of each team.
 # (c) Using the dictionary, create a list of all those teams that have winning records.
 
@@ -110,7 +111,6 @@ def ex5():
             games[won] = wins
             loses = input("Games lost: ")
             games[lost] = loses
-            # base[team_name] = games[won], games[lost]
             base[team_name] = wins, loses
         if answer == "n":
             break
@@ -129,11 +129,6 @@ def ex5():
 # of the form [ wins , losses ] .
 
 # team1 [1, 0]
-
-"""
-    FIX LATER !
-"""
-
 
 def ex6():
     scores = []
@@ -257,18 +252,6 @@ def ex8():
 # BASIC EXERCISES
 
 def basic_exercises_sets():
-    '''
-    set = {}
-    print('Enter elements of set, to stop press [x]')
-    while True:
-        element = input()
-        set = element
-
-        if input() == 'x':
-            break
-    print(set)
-    '''
-
     # 1.  Write a Python program to create a set
     print('Created set')
     set_0 = {'One', 'Two', 33, 77, 1, 'Banana'}
@@ -548,6 +531,7 @@ def binom(n, k):
     binn = special.binom(n, k)
     print(binn)
 
+
 # 7. Write a function that takes an integer n and returns a random integer with exactly n digits. For instance,
 # if n is 3, then 125 and 593 would be valid return values, but 093 would not because that is really 93, which is
 # a two-digit number.
@@ -561,22 +545,24 @@ def digit_numbers(n):
             number.append(random.randint(0, 9))
     print(''.join(str(el) for el in number))
 
+
 # 8. Write a function called number_of_factors that takes an integer and returns how many factors the number has.
 
 def number_of_factors(x):
     counter = 0
-    for i in range(1, x+1):
+    for i in range(1, x + 1):
         if x % i == 0:
             counter += 1
     print(counter)
 
+
 # 9. Write a function called factors that takes an integer and returns a list of its factors.
 
 def factors(x):
-
-    for i in range(1, x+1):
+    for i in range(1, x + 1):
         if x % i == 0:
             print(i)
+
 
 # 10. Write a function called closest that takes a list of numbers L and a number n and returns the largest element
 # in L that is not larger than n . For instance, if L=[1,6,3,9,11] and n=8 , then the function should return 6,
@@ -590,8 +576,9 @@ def closest(list_of_numbers, number):
         else:
             list_of_numbers = sorted(list_of_numbers)
             if number < list_of_numbers[i]:
-                print(list_of_numbers[i-1])
+                print(list_of_numbers[i - 1])
                 break
+
 
 # 11. Write a function called matches that takes two strings as arguments and returns how many matches there are
 # between the strings. A match is where the two strings have the same character at the same index. For instance,
@@ -609,6 +596,7 @@ def matches(str_1, str_2):
                 counter += 1
     print(counter)
 
+
 # 12. Recall that if s is a string, then s.find( ' a ' ) will find the location of the first a in s. The problem is
 # that it does not find the location of every a. Write a function called findall that given a string and a single
 # character, returns a list containing all of the locations of that character in the string. It should return an
@@ -622,11 +610,13 @@ def findall(str, letter):
             indexes.append(i)
     print(indexes)
 
+
 # 13. Write a function called change_case that given a string, returns a string with each upper case letter replaced
 # by a lower case letter and vice-versa.
 
 def change_case(str):
     print(str.swapcase())
+
 
 # 14. Write a function called is_sorted that is given a list and returns True if the list is sorted and False
 # otherwise.
@@ -637,17 +627,18 @@ def is_sorted(a_list):
     else:
         print('False')
 
+
 # 15. Write a function called root that is given a number x and an integer n and returns x 1/n . In the function
 # definition, set the default value of n to 2.
 
-def roott(x,n = 2):
-    print(x * (1/n))
+def roott(x, n=2):
+    print(x * (1 / n))
+
 
 # 16. Write a function called one_away that takes two strings and returns True if the strings are of the same length
 # and differ in exactly one letter, like bike/hike or water/wafer.
 
 def one_away(str_1, str_2):
-
     falses = 0
     if len(str_1) == len(str_2):
         for x, y in zip(str_1, str_2):
@@ -658,42 +649,40 @@ def one_away(str_1, str_2):
         else:
             print('False')
 
+
 # 17.
 # (a) Write a function called primes that is given a number n and returns a list of the first n primes. Let the
 # default value of n be 100.
 
-def primes(n = 100):
-
-    primes = []
+def primes(n=100):
+    primes_ = []
 
     for a in range(1, n * n):
         for b in range(2, a):
             if a % b == 0:
                 break
         else:
-            primes.append(a)
-        if len(primes) == n:
+            primes_.append(a)
+        if len(primes_) == n:
             break
-    print(primes)
-    print(len(primes))
+    print(primes_)
+    print(len(primes_))
 
-primes()
 
 # (b) Modify the function above so that there is an optional argument called start that allows the list to start at
 # a value other than 2. The function should return the first n primes that are greater than or equal to start.
 # The default value of start should be 2.
 
-def primes_2(n = 100, start = 2):
-    primes = []
+def primes_2(n=100, start=2):
+    primes_ = []
 
     for a in range(start, n * n):
-        for b in range(start + 1, a):
-            if a % b != 0:
+        for b in range(2, a):
+            if a % b == 0:
                 break
-        primes.append(a)
-        if len(primes) == n:
+        else:
+            primes_.append(a)
+        if len(primes_) == n:
             break
-    print(primes)
-    print(len(primes))
-
-primes_2(100, 6)
+    print(primes_)
+    print(len(primes_))

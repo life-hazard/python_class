@@ -17,7 +17,7 @@ class Product:
             if number < 10:
                 bill = number * self.price
                 print('The cost: ', bill)
-            if number >= 10 and number <= 99:
+            if 10 <= number <= 99:
                 bill = number * self.price
                 print('The cost: ', bill * 0.9)
             if number >= 100:
@@ -32,6 +32,7 @@ class Product:
             self.amount = self.amount - number
         else:
             print('There\'s not enough items in stock')
+
 
 # 3. Write a class called Password_manager . The class should have a list called old_passwords that holds all of the
 # user’s past passwords. The last item of the list is the user’s current password. There should be a method called
@@ -112,6 +113,7 @@ class Converter:
     def __init__(self, length, unit):
         self.length = length
         self.unit = unit
+
     # inches, feet, yards, miles, kilometers, meters, centimeters, and millimeters
     def inches(self):
         if self.unit == 'in':
